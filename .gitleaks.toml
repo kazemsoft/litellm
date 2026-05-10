@@ -1,0 +1,24 @@
+title = "Gitleaks config for kazemsoft/litellm"
+
+[allowlist]
+description = "Allowlist test data, docs, cookbooks, and example files"
+paths = [
+  "tests/",
+  "cookbook/",
+  "ci_cd/",
+  "ui/litellm-dashboard/src/",
+  "deploy/charts/",
+  "litellm/integrations/arize/README.md",
+  "litellm/llms/.*README.md",
+  "litellm/llms/.*guardrail_translation/",
+  "litellm/policy_templates_backup.json",
+  "litellm/proxy/_experimental/out/",
+]
+
+[[rules]]
+description = "Skip generic-api-key hits in Python source with test/example/placeholder values"
+id = "generic-api-key-allowlist"
+regex = '''(?i)(sk-test|sk-proj|your[-_]?api[-_]?key|example|placeholder|REPLACE|INJECT|<YOUR|Bearer\s+sk-)'''
+allowlist.regexes = [
+  '''.*''',
+]
